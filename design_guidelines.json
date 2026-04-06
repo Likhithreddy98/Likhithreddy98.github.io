@@ -1,0 +1,49 @@
+{
+  "theme": "dark",
+  "archetype": "5 (Jewel & Luxury / Cinematic)",
+  "colors": {
+    "background": "#000000",
+    "text_primary": "#FFFFFF",
+    "text_secondary": "#A1A1AA",
+    "accent_primary": "#F59E0B",
+    "accent_secondary": "#EA580C",
+    "glass_bg": "rgba(255, 255, 255, 0.03)",
+    "glass_border": "rgba(255, 255, 255, 0.1)"
+  },
+  "typography": {
+    "headings": "Outfit, sans-serif",
+    "body": "Inter, sans-serif",
+    "headline_styles": "tracking-[0.5em] uppercase font-bold"
+  },
+  "layout_and_spacing": {
+    "hero_section": "100vh full-screen pinned section using GSAP ScrollTrigger to capture vertical scroll and convert it to horizontal timeline animations.",
+    "grid": "Absolute positioning inside the pinned relative container for precision tracking.",
+    "padding": "Generous spacing, floating text boxes with p-6 or p-8."
+  },
+  "components": {
+    "track_container": "A 100vh relative container that gets pinned by GSAP. Inside, it holds the headline, arrow, car, and impact metrics.",
+    "headline": "Centered horizontally and vertically, huge text 'W E L C O M E  I T Z  F I Z Z'. Split into individual span elements per letter/word for granular animation.",
+    "fire_arrow": "An absolute positioned <img>. Starts off-screen left. Moves across the screen horizontally.",
+    "car_image": "The McLaren top-view image. Moves horizontally in tandem with the arrow, perhaps slightly offset or leading/trailing.",
+    "impact_metrics": "Four absolute positioned glassmorphism cards (top-left, bottom-left, top-right, bottom-right). They contain stats like '58% Increase' etc."
+  },
+  "animations": {
+    "library": "GSAP + ScrollTrigger",
+    "initial_load": "Headline letters fade in slightly (or remain hidden until scroll), background is pure black. Initial fade in for the car and arrow.",
+    "scroll_timeline": "A GSAP timeline with `ScrollTrigger` (scrub: true, pin: true). As user scrolls down:\n1. Arrow and Car translate from `left: 0%` to `left: 100%`.\n2. Headline letters stagger fade in (opacity 0 -> 1) exactly when the arrow passes over them.\n3. Impact metrics fade in and translate up (`y: 50 -> 0`) at various scroll progress points (e.g. 25%, 50%, 75%, 100%).\n4. Reversing scroll seamlessly runs the timeline backwards (arrow moves right-to-left, hiding words)."
+  },
+  "media": {
+    "arrow_image_1": "https://customer-assets.emergentagent.com/job_aec67119-10a2-4c7b-810c-10612115169a/artifacts/tuueatrq_WhatsApp%20Image%202026-04-06%20at%2011.47.53%20PM.jpeg",
+    "arrow_image_2": "https://customer-assets.emergentagent.com/job_aec67119-10a2-4c7b-810c-10612115169a/artifacts/jvuxkejb_WhatsApp%20Image%202026-04-06%20at%2011.47.53%20PM.jpeg",
+    "car_top_view": "https://static.prod-images.emergentagent.com/jobs/aec67119-10a2-4c7b-810c-10612115169a/images/70de0c7aef1cbbabd09b2de40b44790ba9631d4c407f343fc8388d802be26b66.png"
+  },
+  "instructions_to_main_agent": [
+    "Install GSAP: `yarn add gsap @gsap/react`",
+    "Use pure `#000000` background so the fire arrow images seamlessly blend in.",
+    "Apply `mix-blend-mode: screen` or `lighten` to the arrow images just in case there are slight compression artifacts in the black background of the JPEG.",
+    "Implement the pinning scroll effect: The container is pinned, and the scroll distance dictates the progress of a GSAP timeline.",
+    "Map the X-axis translation of the arrow to the ScrollTrigger progress. Simultaneously, map the opacity of the letters to the arrow's X position (or just use a timeline with staggered reveals).",
+    "Use the generated car top-view image and make it translate alongside the arrow. Use CSS `filter: drop-shadow(...)` for a cool glow effect on the car.",
+    "Add `data-testid` to all semantic parts: pinned-section, main-headline, fire-arrow, mclaren-car, impact-metric-1, etc."
+  ]
+}
